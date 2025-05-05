@@ -5,15 +5,19 @@ pipeline {
         // Borrado de contenedores en paralelo
         stage('Drop the containers'){   
             parallel{
-                stage('Borrar el contenedor Apache'){
-                  
+                stage('Borrar el contenedor Apache')
+                {
+                        steps{
                         echo 'droping the container...'
                         sh 'docker rm -f app-web-apache'
-                                
+                        }    
                 }
-                stage('BORRAR CONTENEDOR NGINX'){
+                stage('BORRAR CONTENEDOR NGINX')
+                {   
+                    steps{
                     echo 'droping the container...'
                     sh 'docker rm -f app-web-nginx'
+                    }
                 }
 
             }
