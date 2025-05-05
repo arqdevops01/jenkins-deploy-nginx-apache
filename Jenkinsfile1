@@ -2,15 +2,7 @@ pipeline {
     agent any
     
     stages {
-        stage('Create  directory for the WEB Application')        
-       {
-            steps {
-                //First, drop the directory if exists
-                sh 'rm -rf /home/jenkins/app-web'
-                //Create the directory
-                sh 'mkdir /home/jenkins/app-web'               
-            }
-        }
+        
         stage('Drop the containers'){   
             parallel{
                 stage('Drop apache container'){

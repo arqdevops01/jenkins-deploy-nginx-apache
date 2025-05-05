@@ -2,14 +2,22 @@ pipeline {
     agent any
     
     stages {
-        
+        // Borrado de contenedores en paralelo
         stage('Drop the containers'){   
-            
-            steps {
-            echo 'droping the container...'
-            sh 'docker rm -f app-web-apache'
-            sh 'docker rm -f app-web-nginx'
+            parallel{
+                stage('Borrar el contenedor Apache'){
+                  
+                        echo 'droping the container...'
+                        sh 'docker rm -f app-web-apache'
+                                
+                }
+                stage('BORRAR CONTENEDOR NGINX'){
+                    echo 'droping the container...'
+                    sh 'docker rm -f app-web-nginx'
+                }
+
             }
+            
         }
         //Creating the containers in Parallel
         stage('Create the containers in Parallel') {
